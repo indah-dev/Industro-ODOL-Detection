@@ -239,62 +239,9 @@ elif selected == "Dataset":
         st.plotly_chart(fig_bar, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
+    # --- PENGGANTIAN FITUR EXPLORER DENGAN INFO CLOUD ---
     st.markdown('<div class="explorer-title">🔍 Dataset Explorer</div>', unsafe_allow_html=True)
-    c_drop1, c_drop2, c_drop3 = st.columns([1, 2, 1])
-    with c_drop2: folder_option = st.selectbox("Pilih Direktori / Kategori Data:", ["Train", "Valid", "Test", "Truk Normal", "Truk Overload", "Truk Boks"], index=0)
-
-    if st.session_state.current_folder != folder_option:
-        st.session_state.current_folder = folder_option
-        st.session_state.page = 0
-        all_files = []
-        if folder_option in ["Train", "Valid", "Test"]:
-            target_dir = os.path.join({"Train": "train", "Valid": "valid", "Test": "test"}[folder_option], "images")
-            if os.path.exists(target_dir):
-                for ext in ('*.jpg', '*.jpeg', '*.png'): all_files.extend(glob.glob(os.path.join(target_dir, ext)))
-        else:
-            target_class = {"Truk Normal": "0", "Truk Overload": "1", "Truk Boks": "2"}[folder_option]
-            for split in ["train", "valid", "test"]:
-                label_dir, image_dir = os.path.join(split, "labels"), os.path.join(split, "images")
-                if os.path.exists(label_dir) and os.path.exists(image_dir):
-                    for txt_file in glob.glob(os.path.join(label_dir, "*.txt")):
-                        try:
-                            with open(txt_file, 'r') as f:
-                                if any(line.split()[0] == target_class for line in f.readlines() if line.strip()):
-                                    base_name = os.path.splitext(os.path.basename(txt_file))[0]
-                                    for ext in ['.jpg', '.jpeg', '.png']:
-                                        if os.path.exists(os.path.join(image_dir, base_name + ext)):
-                                            all_files.append(os.path.join(image_dir, base_name + ext))
-                                            break 
-                        except: pass
-        random.shuffle(all_files)
-        st.session_state.shuffled_images = all_files
-
-    img_list = st.session_state.shuffled_images
-    total_images = len(img_list)
-
-    if total_images > 0:
-        total_pages = (total_images - 1) // 10
-        start_idx, end_idx = st.session_state.page * 10, min((st.session_state.page * 10) + 10, total_images)
-        st.write(f"<p style='text-align:center; color:#666;'>Menampilkan gambar <b>{start_idx + 1} - {end_idx}</b> dari total {total_images} gambar</p>", unsafe_allow_html=True)
-
-        row1, row2 = st.columns(5), st.columns(5)
-        for i, img_path in enumerate(img_list[start_idx:end_idx]):
-            try:
-                img_pil = Image.open(img_path)
-                (row1[i] if i < 5 else row2[i-5]).image(img_pil, caption=os.path.basename(img_path), use_container_width=True)
-            except: pass
-
-        st.write("<br>", unsafe_allow_html=True)
-        nav1, nav2, nav3 = st.columns([1, 2, 1])
-        with nav2:
-            col_prev, col_info, col_next = st.columns([1, 2, 1])
-            with col_prev:
-                if st.session_state.page > 0: st.button("⬅️ Prev", on_click=change_page, args=(-1,), use_container_width=True)
-            with col_info: st.markdown(f"<p style='text-align:center; margin-top:8px; font-weight:bold; color:#333;'>Halaman {st.session_state.page + 1} / {total_pages + 1}</p>", unsafe_allow_html=True)
-            with col_next:
-                if st.session_state.page < total_pages: st.button("Next ➡️", on_click=change_page, args=(1,), use_container_width=True)
-    else:
-        st.warning(f"⚠️ Tidak ditemukan gambar untuk pilihan **{folder_option}**.")
+    st.info("💡 **Catatan Sistem (Versi Deployment Cloud):**\n\nFitur galeri interaktif dinonaktifkan pada versi *online* ini untuk menjaga stabilitas memori server *Cloud* gratis. Keseluruhan 2.176 citra dataset asli beserta anotasinya hanya dapat diakses sepenuhnya melalui environment *Localhost* pada perangkat asli peneliti.")
 
 # ==========================================
 # HALAMAN 3: CEK MODEL (UNIVERSAL EXPLANATION)
