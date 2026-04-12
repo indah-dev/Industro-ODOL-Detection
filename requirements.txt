@@ -1,0 +1,7 @@
+streamlit
+streamlit-option-menu
+plotly
+pandas
+Pillow
+numpy
+opencv-python-headless
