@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4be4a8bd-37ac-42c1-a46f-88d1d4e16a68" />**Analisis Komparasi Algoritma YOLO, SSD, dan Faster R-CNN untuk Deteksi Objek Pelanggaran Truk ODOL (Over Dimension Overload)**
+**Analisis Komparasi Algoritma YOLO, SSD, dan Faster R-CNN untuk Deteksi Objek Pelanggaran Truk ODOL (Over Dimension Overload)**
 
 Repositori ini berisi kode sumber pendukung untuk penelitian komparatif algoritma Deep Learning (YOLOv8 Nano, SSD, dan Faster R-CNN) dalam mendeteksi pelanggaran truk muatan berlebih (ODOL). Penelitian ini ditujukan untuk memenuhi standar transparansi dan reproducibility (keterulangan eksperimen) dalam publikasi jurnal Q1.
 
