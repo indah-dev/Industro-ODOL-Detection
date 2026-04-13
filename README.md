@@ -30,4 +30,7 @@ Jika Bapak/Ibu ingin menjalankan atau mengevaluasi kode di Google Colab tanpa me
 - Unggah Model: Masukkan file best_yolo.pt, best_ssd.pth, dan best_frcnn.pth ke dalam folder yang baru saja dibuat.
 - Eksekusi: Buka file .ipynb di Google Colab, jalankan Cell Mount Google Drive, lalu Anda dapat langsung menuju Cell Evaluasi atau Prediksi.
 
+Link Streamlit:
+**https://industro-odol-detection-7cx2srxhsxc8dbuks7ogt8.streamlit.app/**
+
 **Dikembangkan oleh Indah Lestari untuk pengembangan sistem cerdas pemantauan infrastruktur jalan raya.**
